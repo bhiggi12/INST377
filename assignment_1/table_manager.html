@@ -6,15 +6,15 @@
 		margin-bottom: 20px;
 	}
 	/*Extra Styling*/
-	table, #org_table {
+	#org_table{
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 80%;
+    width: 90%;
 		margin: auto;
 	}
 
 	td, th {
-	    border: 1px solid #dddddd;
+	    border: 1px solid #000000;
 	    text-align: left;
 	    padding: 8px;
 	}
@@ -24,7 +24,9 @@
 	}
 
 	#summary_table {
-		width: 50%;
+		font-family: arial, sans-serif;
+    border-collapse: collapse;
+		width: 40%;
 		margin: auto;
 	}
 
@@ -35,6 +37,16 @@
 	.answer {
 		text-align: center;
 		font-weight: bold;
+	}
+
+	#summary_table_header{
+		 text-align: center;
+		 font-weight: bold;
+		 font-size: 24px;
+		 padding-top: 10px;
+		 padding-bottom: 5px;
+		 width: 100%;
+		 margin: auto;
 	}
 </style>
 
@@ -233,8 +245,10 @@ var organizations = [
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
 
 	<div id="org_table"></div>
+	<div id="summary_table_header"></div>
 
 	<div id='summary_table'>
+	<!--
 		<h1 id='summary_stat_header' align = 'center'>Summary Statistics of Organization Data</h1>
 		<table>
 			<tr>
@@ -250,7 +264,7 @@ var organizations = [
 			<tr>
 				<td class='question_number'>2</td>
 				<td>Number of Organizations Less Than 10 Years Old </td>
-				<td id="num_older_ten" class='answer'>?</td>
+				<td id="num_less_ten" class='answer'>?</td>
 			</tr>
 			<tr>
 				<td class='question_number'>3</td>
@@ -268,6 +282,7 @@ var organizations = [
 				<td id="num_size" class='answer'>?</td>
 			</tr>
 		</table>
+	-->
 	</div>
 
 <script>
@@ -277,37 +292,103 @@ console.log("test");
 
 // Your JavaScript code goes here
 // Questions to answer
+
 // 1. How many non-profit organizations are listed?
 numNonProfit = organizations.filter(function(item) {
 	return item["Organization Type"] === "Nonprofit";
 }).length;
 console.log("There are " + numNonProfit + " non-profit organizations listed.");
-document.getElementById('num_non_profit').innerHTML = numNonProfit;
+//document.getElementById('num_non_profit').innerHTML = numNonProfit;
+
 // 2. How many organization are less than 10 years old?
-numOlderTen = organizations.filter(function(item) {
+numLessTen = organizations.filter(function(item) {
 	return ((new Date()).getFullYear() - item["Founding Year"]) < 10;
 }).length;
-console.log("There are " + numOlderTen + " organizations that are less than 10 years old.");
-document.getElementById('num_older_ten').innerHTML = numOlderTen;
+console.log("There are " + numLessTen + " organizations that are less than 10 years old.");
+//document.getElementById('num_less_ten').innerHTML = numLessTen;
+
 // 3 How many of these organization are North American?
 numNorthAmerican = organizations.filter(function(item) {
 	return item["Region"] === "North America";
 }).length;
 console.log("There are " + numNorthAmerican + " organizations are North American.");
-document.getElementById('num_north_american').innerHTML = numNorthAmerican;
+//document.getElementById('num_north_american').innerHTML = numNorthAmerican;
+
 // 4. How many organizations used the Transportation type of data?
 numUsingTransportation = organizations.filter(function(item) {
 	return item["Type of Data Used"].includes("Transportation");
 }).length;
 console.log(numUsingTransportation + " organizations use the Transportation type of data.");
-document.getElementById('num_using_transportation').innerHTML = numUsingTransportation;
+//document.getElementById('num_using_transportation').innerHTML = numUsingTransportation;
+
 // 5. One other feature of the data you find interesting (cannot be a single value
 //    must be some summary or pattern within the data)
 numSize = organizations.filter(function(item) {
 	return item["Size"] === "1 to 10";
 }).length;
 console.log(numSize + " organizations have a size of 1 to 10.");
-document.getElementById('num_size').innerHTML = numSize;
+//document.getElementById('num_size').innerHTML = numSize;
+
+//Header
+document.getElementById('summary_table_header').innerHTML = "Summary Statistics of Organization Data";
+
+// Output answers into table
+summary_headers = ["Question Number", "Question", "Answer"];
+for (i=0; i < summary_headers.length; i++) {
+
+	var h = document.createElement("th");
+	t = document.createTextNode(summary_headers[i]);
+	h.appendChild(t);
+	document.getElementById("summary_table").appendChild(h);
+
+}
+summary_table_rows =
+[
+	{
+		"Question Number" : "1",
+		"Question" : "Number of Non-Profit Organizations",
+		"Answer" : numNonProfit
+	},
+	{
+		"Question Number" : "2",
+		"Question" : "Number of Organizations Less than 10 Years Old",
+		"Answer" : numLessTen
+	},
+	{
+		"Question Number" : "3",
+		"Question" : "Number of North American Organizations",
+		"Answer" : numNorthAmerican
+	},
+	{
+		"Question Number" : "4",
+		"Question" : "Number of Organizations Using Transportation Type of Data",
+		"Answer" : numUsingTransportation
+	},
+	{
+		"Question Number" : "5",
+		"Question" : "Number of Organizations with a Size 1 to 10",
+		"Answer" : numSize
+	}
+];
+
+for (i = 0; i < summary_table_rows.length; i++) {
+
+	var tr = document.createElement("tr");
+
+	for (j = 0; j < summary_headers.length; j++) {
+
+		var td = document.createElement("td");
+		t = document.createTextNode(summary_table_rows[i][summary_headers[j]]);
+		td.appendChild(t);
+		tr.appendChild(td);
+
+	}
+
+	document.getElementById("summary_table").appendChild(tr);
+
+}
+
+
 
 //Extra: Table with all the Organizations
 /* Get headers from organization element */
