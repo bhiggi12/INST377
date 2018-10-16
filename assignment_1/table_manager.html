@@ -6,7 +6,7 @@
 		margin-bottom: 20px;
 	}
 	/*Extra Styling*/
-	table {
+	table, #org_table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -20,6 +20,11 @@
 
 	tr:nth-child(even) {
 	    background-color: #dddddd;
+	}
+
+	#summary_table {
+		width: 50%;
+		margin: auto;
 	}
 
 	.question_number {
@@ -225,7 +230,14 @@ var organizations = [
 
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
+<<<<<<< HEAD
+	<div id="org_table"></div>
+
+	<div id='summary_table'>
+		<h1 id='summary_stat_header' align = 'center'>Summary Statistics of Organization Data</h1>
+=======
 	<div id="org_table">
+>>>>>>> parent of b8d921f... Completed Assignemnt 1
 		<table>
 			<tr>Summary Statistics of Organization Data</tr>
 			<tr>
@@ -299,6 +311,86 @@ numSize = organizations.filter(function(item) {
 }).length;
 console.log(numSize + " organizations have a size of 1 to 10.");
 document.getElementById('num_size').innerHTML = numSize;
+<<<<<<< HEAD
+
+//Extra: Table with all the Organizations
+/* Get headers from organization element */
+headers = Object.keys(organizations[0]);
+
+/* Create the headers rows */
+for (i=0; i < headers.length; i++) {
+
+	var h = document.createElement("th");
+	t = document.createTextNode(headers[i]);
+	h.appendChild(t);
+	document.getElementById("org_table").appendChild(h);
+
+}
+
+/* Create each a row for each organization */
+for (i = 0; i < organizations.length; i++) {
+
+	var tr = document.createElement("tr");
+
+	for (j = 0; j < headers.length; j++) {
+
+		var td = document.createElement("td");
+		t = document.createTextNode(organizations[i][headers[j]]);
+		td.appendChild(t);
+		tr.appendChild(td);
+
+	}
+
+	document.getElementById("org_table").appendChild(tr);
+
+}
+
+// Original Approach
+/*
+var k = '<table><tbody>';
+
+headers = Object.keys(organizations[0]);
+for (i = 0; i < headers.length; i++) {
+	k += '<th>';
+	k += headers[i];
+	k += </th>;
+}
+
+for (i = 0; i < organizations.length; i++) {
+	k += '<tr>';
+	for (j = 0; j < headers.length; j++) {
+		k += '<td>' + organizations[i][headers[j]] + '</td>';
+	}
+	k += '</tr>';
+}
+
+
+/* Edited Above
+for (i = 0; i < organization.length; i++) {
+	k += '<tr>';
+	k += '<td>' + organizations[i]["Region"] + '</td>';
+	k += '<td>' + organizations[i]["Country"] + '</td>';
+	k += '<td>' + organizations[i]["Country Income Level"] + '</td>';
+	k += '<td>' + organizations[i]["Organization Name"] + '</td>';
+	k += '<td>' + organizations[i]["Organization Type"] + '</td>';
+	k += '<td>' + organizations[i]["Sectors"] + '</td>';
+	k += '<td>' + organizations[i]["Description"] + '</td>';
+	k += '<td>' + organizations[i]["City"] + '</td>';
+	k += '<td>' + organizations[i]["State/Region"] + '</td>';
+	k += '<td>' + organizations[i]["Founding Year"] + '</td>';
+	k += '<td>' + organizations[i]["Size"] + '</td>';
+	k += '<td>' + organizations[i]["Type of Data Used"] + '</td>';
+	k += '<td>' + organizations[i]["profileID"] + '</td>';
+	k += '</tr>';
+}
+*/
+/*
+k += '</table></tbody>';
+
+document.getElementById('org_table').innerHTML = k;
+*/
+=======
+>>>>>>> parent of b8d921f... Completed Assignemnt 1
 </script>
 
 </body>
