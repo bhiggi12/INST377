@@ -9,7 +9,8 @@
 	table, #org_table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    width: 80%;
+		margin: auto;
 	}
 
 	td, th {
@@ -230,16 +231,12 @@ var organizations = [
 
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
-<<<<<<< HEAD
+
 	<div id="org_table"></div>
 
 	<div id='summary_table'>
 		<h1 id='summary_stat_header' align = 'center'>Summary Statistics of Organization Data</h1>
-=======
-	<div id="org_table">
->>>>>>> parent of b8d921f... Completed Assignemnt 1
 		<table>
-			<tr>Summary Statistics of Organization Data</tr>
 			<tr>
 				<th>Question Number</th>
 				<th>Question</th>
@@ -311,7 +308,6 @@ numSize = organizations.filter(function(item) {
 }).length;
 console.log(numSize + " organizations have a size of 1 to 10.");
 document.getElementById('num_size').innerHTML = numSize;
-<<<<<<< HEAD
 
 //Extra: Table with all the Organizations
 /* Get headers from organization element */
@@ -389,8 +385,6 @@ k += '</table></tbody>';
 
 document.getElementById('org_table').innerHTML = k;
 */
-=======
->>>>>>> parent of b8d921f... Completed Assignemnt 1
 </script>
 
 </body>
