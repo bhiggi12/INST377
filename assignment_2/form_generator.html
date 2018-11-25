@@ -3,23 +3,123 @@
 <head>
 	<title>Team Peer Evaluation</title>
 	<style>
-		div {
+		body {
 			margin-top: 20px;
 			margin-bottom: 20px;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+		#header {
+			text-align: center;
+			font-weight: bold;
+			font: 32px arial, sans-serif;
+		}
+		#summary {
+			text-align: center;
+			font: 14px arial, sans-serif;
+		}
+		.valueRequest {
+			font-weight: bold;
+			font: bold 14px arial, sans-serif ;
 		}
 	</style>
 
 <script>
 function validateForm() {
     // write code to validate your forms
+		/* The file form_display.html must POST the data to the file form_processor.php.
+		 * The form_display.html should use JavaScript to validate user's inputs.
+		 */
+		 var x = document.forms['feedbackForm']['Team Name'].value;
+		 //alert(x);
+		 if (x === "") {
+			 alert("Team Name must be filled out");
+			 return false;
+		 }
+		 var x = document.forms["feedbackForm"]["Time Start"].value;
+		 //alert(x);
+		 if (x === "") {
+			 alert("Time Start must be filled out");
+			 return false;
+		 }
+		 var x = document.forms["feedbackForm"]["Time Stop"].value;
+		 //alert(x);
+		 if (x === "") {
+			 alert("Time Stop must be filled out");
+			 return false;
+		 }
 }
 </script>
 
 </head>
 <body>
+	<div id="header">Peer Evaluations</div>
+	<div id="summary">This form is created to do peer evaluations for team
+										presentations in an undergraduate classroom. </div>
 	<!-- Create Your Form Below -->
-
-
-
+	<form name="feedbackForm" action="form_processor.php" method="post" onsubmit="return validateForm();">
+		<!-- Team Project Name (required) -->
+		<div class="valueRequest"> Team Project Name: </div>
+		<input type="text" name="Team Project Name"</input>
+		<br/>
+		<br/>
+		<!-- Time Start (required - valid date time) -->
+		<div class="valueRequest">Time Start:</div><input type="time" name="Time Start"</input>
+		<!-- Time Stop (required - valid date time) -->
+		<div class="valueRequest">Time Stop:</div> <input type="time" name="Time Stop"</input><br/>
+		<!-- Repeating Sections for: -->
+		<!-- Team Member Name  -->
+		<!-- Level of Participation Per Member - A range from of values like: "Above and Beyond", "Satisfactory", "Unsatisfactory", "Absent" -->
+		<br/>
+		<div class="valueRequest">Team Member Name:</div> <input type="text" name="Team Member Name1"</input><br/>
+		<div class="valueRequest">Level of Participation:</div> </br>
+		<input type="radio" name="Level of Participation1" value="1" checked>Above and Beyond<br>
+		<input type="radio" name="Level of Participation1" value="0.80">Satisfactory<br>
+		<input type="radio" name="Level of Participation1" value="0.60">Unsatisfactory<br>
+		<input type="radio" name="Level of Participation1" value="0">Absent<br>
+		<br/>
+		<div class="valueRequest">Team Member Name:</div> <input type="text" name="Team Member Name2"</input><br/>
+		<div class="valueRequest">Level of Participation:</div> </br>
+		<input type="radio" name="Level of Participation2" value="1" checked>Above and Beyond<br>
+		<input type="radio" name="Level of Participation2" value="0.80">Satisfactory<br>
+		<input type="radio" name="Level of Participation2" value="0.60">Unsatisfactory<br>
+		<input type="radio" name="Level of Participation2" value="0">Absent<br>
+		<br/>
+		<div class="valueRequest">Team Member Name:</div> <input type="text" name="Team Member Name3"</input><br/>
+		<div class="valueRequest">Level of Participation:</div> </br>
+		<input type="radio" name="Level of Participation3" value="1" checked>Above and Beyond<br>
+		<input type="radio" name="Level of Participation3" value="0.80">Satisfactory<br>
+		<input type="radio" name="Level of Participation3" value="0.60">Unsatisfactory<br>
+		<input type="radio" name="Level of Participation3" value="0">Absent<br>
+		<br/>
+		<div class="valueRequest">Team Member Name:</div> <input type="text" name="Team Member Name4"</input><br/>
+		<div class="valueRequest">Level of Participation:</div> </br>
+		<input type="radio" name="Level of Participation4" value="1" checked>Above and Beyond<br>
+		<input type="radio" name="Level of Participation4" value="0.80">Satisfactory<br>
+		<input type="radio" name="Level of Participation4" value="0.60">Unsatisfactory<br>
+		<input type="radio" name="Level of Participation4" value="0">Absent<br>
+		<br/>
+		<!-- An area to input notes about the project -->
+		<div class="valueRequest">Other Comments:</div> <input type="text" name="Other Comments"</input>
+		<br/>
+		<!-- Overall Team Grade (A+  through F) (required) -->
+		<div class="valueRequest">Overall Team Grade:</div>
+		<select name="Overall Team Grade">
+  		<option value="100">A+</option>
+			<option value="96.9">A</option>
+			<option value="92.9">A-</option>
+			<option value="89.9">B+</option>
+			<option value="86.9">B</option>
+			<option value="82.9">B-</option>
+			<option value="79.9">C+</option>
+			<option value="76.9">C</option>
+			<option value="72.9">C-</option>
+			<option value="69.9">D+</option>
+			<option value="66.9">D</option>
+			<option value="62.9">D-</option>
+			<option value="59">F</option>
+		</select>
+		<br/><input type="submit" value="Submit"><br>
+	</form>
 </body>
 </html>
