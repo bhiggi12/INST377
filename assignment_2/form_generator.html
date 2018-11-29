@@ -48,6 +48,13 @@ function validateForm() {
 			 alert("Time Stop must be filled out");
 			 return false;
 		 }
+		 var x = document.forms["feedbackForm"]["Overall Team Grade"].value;
+		 //alert(x);
+		 if (x === "") {
+			 alert("Overall Team Grade must be filled out");
+			 return false;
+		 }
+	
 }
 </script>
 
